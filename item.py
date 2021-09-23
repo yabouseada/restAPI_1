@@ -28,32 +28,32 @@ class Item(Resource):
     
         return {'message':'Item not found'},404
     
-    def post(self,name):
-        if next(filter(lambda x: x['name']==name,items),None):
-            return{'message':"An item with name'{}'already.".format(name)}, 400
+    # def post(self,name):
+    #     if next(filter(lambda x: x['name']==name,items),None):
+    #         return{'message':"An item with name'{}'already.".format(name)}, 400
 
-        data = Item.parser.parse_args()
-        item ={'name':name,'price': data['price']}
-        items.append(item)
-        return item, 201
+    #     data = Item.parser.parse_args()
+    #     item ={'name':name,'price': data['price']}
+    #     items.append(item)
+    #     return item, 201
 
-    def delete(self,name):
-        global items
-        items = list(filter(lambda x: x['name']!=name, items))
-        return{'message':'Item delete'}
+    # def delete(self,name):
+    #     global items
+    #     items = list(filter(lambda x: x['name']!=name, items))
+    #     return{'message':'Item delete'}
     
     
-    def put(self,name):
-        data = Item.parser.parse_args()
+    # def put(self,name):
+    #     data = Item.parser.parse_args()
         
-        item = next(filter(lambda x: x['name']==name,items),None)
-        if item is None:
-            item={'name':name,'price':data['price'] }
-            items.append(item)
-        else:
-            item.update(data)
-        return item
+    #     item = next(filter(lambda x: x['name']==name,items),None)
+    #     if item is None:
+    #         item={'name':name,'price':data['price'] }
+    #         items.append(item)
+    #     else:
+    #         item.update(data)
+    #     return item
 
-class ItemList(Resource):
-    def get(self):
-        return{'items':items}
+# class ItemList(Resource):
+#     def get(self):
+#         return{'items':items}
