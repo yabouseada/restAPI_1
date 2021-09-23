@@ -7,8 +7,8 @@ from security import authenticate, identity
 from user import UserRegister
 
 
-app= Flask(__name__)
-app.secret_key= 'yahia'
+app = Flask(__name__)
+app.secret_key = 'yahia'
 api= Api(app)
 
 jwt= JWT(app,authenticate,identity) #/auth
@@ -43,8 +43,8 @@ class Item(Resource):
     
     
     def put(self,name):
-      
         data = Item.parser.parse_args()
+        
         item = next(filter(lambda x: x['name']==name,items),None)
         if item is None:
             item={'name':name,'price':data['price'] }
@@ -52,11 +52,6 @@ class Item(Resource):
         else:
             item.update(data)
         return item
-
-        
-   
-
-
 
 class ItemList(Resource):
     def get(self):
