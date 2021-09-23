@@ -43,7 +43,7 @@ class Item(Resource):
     
     
     def post(self,name):
-            if self.find_by_name:
+            if self.find_by_name(name):
                 return{'message':"An item with name'{}'already exists.".format(name)}, 400
 
             data = Item.parser.parse_args()
